@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrera del Aprendiz</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="aplicacion">
+      <header class="barraSuperior">
+        <div class="marca">
+          <img class="logo" src="./logo.png" alt="Logo" />
+          <div class="titulo">Carrera del Aprendiz</div>
+        </div>
+        <div class="tablero" id="hud">
+          <div class="medalla"><span class="clave">Jugador</span><span class="valor" id="hudPlayer">—</span></div>
+          <div class="medalla"><span class="clave">Distancia</span><span class="valor" id="hudDistance">0 m</span></div>
+          <div class="medalla"><span class="clave">Velocidad</span><span class="valor" id="hudSpeed">100%</span></div>
+          <div class="medalla"><span class="clave">Puntos</span><span class="valor" id="hudScore">0</span></div>
+          <div class="medalla"><span class="clave">Aciertos</span><span class="valor" id="hudCorrect">0/8</span></div>
+          <div class="medalla"><span class="clave">Tiempo</span><span class="valor" id="hudTime">60.0 s</span></div>
+        </div>
+      </header>
+
+      <main class="principal">
+        <div class="envolturaJuego">
+          <canvas id="game" width="900" height="520"></canvas>
+          <div class="ayuda">
+            <div class="filaAyuda"><span class="tecla">←</span><span class="tecla">→</span> o <span class="tecla">A</span><span class="tecla">D</span> para mover</div>
+            <div class="filaAyuda"><span class="tecla">1</span><span class="tecla">2</span><span class="tecla">3</span><span class="tecla">4</span> para responder rápido</div>
+            <div class="filaAyuda"><span class="tecla">R</span> reiniciar</div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="capa" id="overlayRegister" aria-hidden="false">
+      <div class="panel">
+        <h2>Registro de aprendiz</h2>
+        <p>Escribe tus datos para guardar tus partidas.</p>
+        <form class="formulario" id="formRegister" autocomplete="off">
+          <label class="campo">
+            <span class="etiqueta">Nombre</span>
+            <input class="entrada" id="regNombre" name="nombre" required minlength="2" maxlength="60" placeholder="Ej: María Pérez" />
+          </label>
+          <label class="campo">
+            <span class="etiqueta">Ficha (opcional)</span>
+            <input class="entrada" id="regFicha" name="ficha" maxlength="30" placeholder="Ej: 2691234" />
+          </label>
+          <div class="filaFormulario">
+            <button class="boton" type="submit" id="btnRegister">Guardar y continuar</button>
+          </div>
+          <div class="mensajeFormulario" id="regMsg"></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="capa" id="overlayStart" aria-hidden="true">
+      <div class="panel">
+        <h1>Nivel 1: Pista de Convivencia</h1>
+        <p>Responde las preguntas del manual  para mantener la velocidad.</p>
+        <div class="reglas">
+          <div class="regla"><span class="etiquetaEstado bien">Correcta</span> +20% velocidad por 3 s y puntos</div>
+          <div class="regla"><span class="etiquetaEstado mal">Incorrecta</span> -30% velocidad por 4 s</div>
+          <div class="regla"><span class="etiquetaEstado mal">Sin responder</span> -40% velocidad por 4 s y -10 m</div>
+        </div>
+        <button class="boton" id="btnStart">Jugar</button>
+      </div>
+    </div>
+
+    <div class="capa" id="overlayQuiz" aria-hidden="true">
+      <div class="panel panelPregunta">
+        <div class="encabezadoPregunta">
+          <div class="tituloPregunta" id="quizTitle">Pregunta</div>
+          <div class="tiempoPregunta"><span>Tiempo:</span> <strong id="quizTime">12</strong>s</div>
+        </div>
+        <div class="textoPregunta" id="quizQ">...</div>
+        <div class="opcionesPregunta" id="quizOpts"></div>
+        <div class="pistaPregunta">También puedes responder con 1–4.</div>
+      </div>
+    </div>
+
+    <div class="capa" id="overlayEnd" aria-hidden="true">
+      <div class="panel">
+        <h2>Resultado</h2>
+        <div class="resultados">
+          <div class="filaResultado"><span class="clave">Tiempo</span><span class="valor" id="endTime">—</span></div>
+          <div class="filaResultado"><span class="clave">Puntos</span><span class="valor" id="endScore">—</span></div>
+          <div class="filaResultado"><span class="clave">Aciertos</span><span class="valor" id="endCorrect">—</span></div>
+          <div class="filaResultado"><span class="clave">Licencia</span><span class="valor" id="endMedal">—</span></div>
+        </div>
+        <div class="clasificacion">
+          <div class="tituloClasificacion">Ranking (Top 10)</div>
+          <div class="tablaClasificacion" id="leaderboard">Cargando…</div>
+        </div>
+        <div class="botonesFinal">
+          <button class="boton" id="btnRestart">Reiniciar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./game.js"></script>
+  </body>
+</html>

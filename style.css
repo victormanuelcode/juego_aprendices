@@ -1,0 +1,403 @@
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: radial-gradient(900px 600px at 20% 0%, rgba(46, 204, 113, .16), rgba(244, 251, 246, 0) 60%), radial-gradient(800px 520px at 85% 25%, rgba(120, 230, 170, .14), rgba(244, 251, 246, 0) 55%), #f4fbf6;
+    color: #0b2b1b
+}
+
+.aplicacion {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column
+}
+
+.barraSuperior {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(10, 60, 35, .10);
+    background: linear-gradient(180deg, rgba(46, 204, 113, .12), rgba(244, 251, 246, 0))
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.logo {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .9);
+    border: 1px solid rgba(10, 60, 35, .14)
+}
+
+.titulo {
+    font-weight: 700;
+    letter-spacing: .2px
+}
+
+.tablero {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px
+}
+
+.medalla {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 8px 10px;
+    border: 1px solid rgba(10, 60, 35, .12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .75)
+}
+
+.medalla .clave {
+    opacity: .75;
+    font-size: 12px
+}
+
+.medalla .valor {
+    font-weight: 700
+}
+
+.principal {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px
+}
+
+.envolturaJuego {
+    display: grid;
+    gap: 10px
+}
+
+canvas {
+    border-radius: 14px;
+    border: 1px solid rgba(10, 60, 35, .12);
+    background: rgba(255, 255, 255, .88);
+    box-shadow: 0 14px 48px rgba(10, 60, 35, .16)
+}
+
+.ayuda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    opacity: .85;
+    font-size: 13px
+}
+
+.filaAyuda {
+    display: flex;
+    align-items: center;
+    gap: 6px
+}
+
+.tecla {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 6px;
+    border: 1px solid rgba(10, 60, 35, .14);
+    background: rgba(255, 255, 255, .75);
+    font-weight: 700;
+    font-size: 12px
+}
+
+.capa {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(11, 43, 27, .18);
+    backdrop-filter: blur(6px)
+}
+
+.capa[aria-hidden="true"] {
+    display: none
+}
+
+.panel {
+    width: min(720px, 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(10, 60, 35, .14);
+    background: rgba(255, 255, 255, .90);
+    box-shadow: 0 18px 60px rgba(10, 60, 35, .20);
+    padding: 18px 18px 16px
+}
+
+.panel h1 {
+    margin: 0 0 6px;
+    font-size: 22px
+}
+
+.panel h2 {
+    margin: 0 0 10px;
+    font-size: 20px
+}
+
+.panel p {
+    margin: 0 0 12px;
+    opacity: .9
+}
+
+.reglas {
+    display: grid;
+    gap: 10px;
+    margin: 12px 0 14px
+}
+
+.regla {
+    display: flex;
+    gap: 10px;
+    align-items: center
+}
+
+.etiquetaEstado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: .2px
+}
+
+.etiquetaEstado.bien {
+    background: rgba(46, 204, 113, .16);
+    border: 1px solid rgba(46, 204, 113, .38);
+    color: #0b5a35
+}
+
+.etiquetaEstado.mal {
+    background: rgba(255, 69, 96, .12);
+    border: 1px solid rgba(255, 69, 96, .35);
+    color: #ffd0d8
+}
+
+.boton {
+    appearance: none;
+    border: 0;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 800;
+    background: linear-gradient(180deg, #35d07a, #1fbf63);
+    color: white;
+    cursor: pointer
+}
+
+.boton:active {
+    transform: translateY(1px)
+}
+
+.panelPregunta {
+    padding: 16px
+}
+
+.encabezadoPregunta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px
+}
+
+.tituloPregunta {
+    font-weight: 900;
+    letter-spacing: .2px
+}
+
+.tiempoPregunta {
+    opacity: .9
+}
+
+.textoPregunta {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 10px 0 14px;
+    line-height: 1.25
+}
+
+.opcionesPregunta {
+    display: grid;
+    gap: 10px
+}
+
+.opcion {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(10, 60, 35, .12);
+    background: rgba(255, 255, 255, .82);
+    padding: 10px 12px;
+    color: inherit;
+    cursor: pointer
+}
+
+.opcion:hover {
+    background: rgba(46, 204, 113, .12)
+}
+
+.opcionTecla {
+    min-width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(46, 204, 113, .14);
+    border: 1px solid rgba(46, 204, 113, .30);
+    font-weight: 900
+}
+
+.opcionTexto {
+    line-height: 1.25
+}
+
+.pistaPregunta {
+    margin-top: 10px;
+    opacity: .7;
+    font-size: 13px
+}
+
+.resultados {
+    display: grid;
+    gap: 10px;
+    margin: 10px 0 12px
+}
+
+.filaResultado {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(10, 60, 35, .12);
+    background: rgba(255, 255, 255, .78)
+}
+
+.filaResultado .clave {
+    opacity: .75
+}
+
+.filaResultado .valor {
+    font-weight: 900
+}
+
+.botonesFinal {
+    display: flex;
+    justify-content: flex-end
+}
+
+.formulario {
+    display: grid;
+    gap: 12px;
+    margin-top: 10px
+}
+
+.campo {
+    display: grid;
+    gap: 6px
+}
+
+.etiqueta {
+    font-weight: 800;
+    font-size: 13px;
+    opacity: .9
+}
+
+.entrada {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(10, 60, 35, .14);
+    background: rgba(255, 255, 255, .86);
+    color: inherit;
+    padding: 10px 12px;
+    font-weight: 700;
+    outline: none
+}
+
+.entrada:focus {
+    border-color: rgba(46, 204, 113, .75);
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, .18)
+}
+
+.filaFormulario {
+    display: flex;
+    justify-content: flex-end
+}
+
+.mensajeFormulario {
+    min-height: 18px;
+    opacity: .85;
+    font-size: 13px
+}
+
+.clasificacion {
+    margin: 10px 0 12px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(10, 60, 35, .12);
+    background: rgba(255, 255, 255, .70)
+}
+
+.tituloClasificacion {
+    font-weight: 900;
+    margin-bottom: 8px
+}
+
+.tablaClasificacion {
+    display: grid;
+    gap: 8px
+}
+
+.filaClasificacion {
+    display: grid;
+    grid-template-columns: 30px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(10, 60, 35, .10);
+    background: rgba(255, 255, 255, .74)
+}
+
+.posClasificacion {
+    opacity: .8;
+    font-weight: 900
+}
+
+.nombreClasificacion {
+    font-weight: 800
+}
+
+.metaClasificacion {
+    opacity: .75;
+    font-size: 12px
+}
+
+.puntajeClasificacion {
+    font-weight: 900
+}
