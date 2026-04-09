@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-04-2026 a las 04:49:20
+-- Tiempo de generación: 09-04-2026 a las 05:13:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -38,6 +38,19 @@ CREATE TABLE `partidas` (
   `creado_en` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(60) NOT NULL,
+  `ficha` varchar(30) NOT NULL DEFAULT '',
+  `creado_en` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -50,6 +63,13 @@ ALTER TABLE `partidas`
   ADD KEY `idx_partidas_id_usuario` (`id_usuario`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uq_usuarios_nombre_ficha` (`nombre`,`ficha`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -58,6 +78,12 @@ ALTER TABLE `partidas`
 --
 ALTER TABLE `partidas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
